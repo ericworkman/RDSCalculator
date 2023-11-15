@@ -1,0 +1,13 @@
+<div id="<%= dom_id loot_table %>">
+  <p>
+    <strong>Title:</strong>
+    <%= loot_table.title %>
+  </p>
+
+  <h2>Loot Items</h2>
+  <% for loot_item in loot_table.loot_items %>
+    <% @loot_table = loot_table %>
+    <%= render loot_item %>
+  <% end %>
+
+</div>

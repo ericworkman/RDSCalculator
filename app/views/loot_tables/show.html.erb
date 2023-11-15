@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @loot_table %>
+
+<div>
+  <%= link_to "Edit this loot table", edit_loot_table_path(@loot_table) %> |
+  <%= link_to "Add Loot Item", new_loot_table_loot_item_path(@loot_table) %> |
+  <%= link_to "Back to loot tables", loot_tables_path %>
+
+  <%= button_to "Destroy this loot table", @loot_table, method: :delete %>
+</div>

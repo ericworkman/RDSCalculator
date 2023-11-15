@@ -10,8 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_15_185952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "loot_items", force: :cascade do |t|
+    t.string "name"
+    t.integer "probability"
+    t.bigint "loot_table_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loot_table_id"], name: "index_loot_items_on_loot_table_id"
+  end
+
+  create_table "loot_tables", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "loot_items", "loot_tables"
 end

@@ -1,0 +1,15 @@
+<div id="<%= dom_id loot_item %>">
+  <p>
+    <strong>Name:</strong>
+    <%= loot_item.name %>
+  </p>
+
+  <p>
+    <strong>Probability:</strong>
+    <%= loot_item.probability %>
+  </p>
+
+  <%= link_to "Edit this loot item", edit_loot_table_loot_item_path(@loot_table, loot_item) %> |
+  <%= button_to "Destroy this loot item", [@loot_table, loot_item], method: :delete %>
+
+</div>
