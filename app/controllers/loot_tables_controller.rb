@@ -4,10 +4,12 @@ class LootTablesController < ApplicationController
   # GET /loot_tables or /loot_tables.json
   def index
     @loot_tables = LootTable.all
+    @show_item_actions = false
   end
 
   # GET /loot_tables/1 or /loot_tables/1.json
   def show
+    @show_item_actions = true
   end
 
   # GET /loot_tables/new
@@ -57,11 +59,11 @@ class LootTablesController < ApplicationController
     end
   end
 
-  # GET /loot_tables/1/roll
+  # POST /loot_tables/1/roll
   def roll
     @roll = @loot_table.roll()
     respond_to do |format|
-      format.turbo_stream { render :roll }
+      format.turbo_stream
     end
   end
 

@@ -5,7 +5,9 @@
       <tr>
         <th class="border border-slate-300 p-2 bg-slate-100">Name</th>
         <th class="border border-slate-300 p-2 bg-slate-100">Probability</th>
-        <th class="border border-slate-300 p-2 bg-slate-100"></th>
+        <% if @show_item_actions %>
+          <th class="border border-slate-300 p-2 bg-slate-100"></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -14,12 +16,14 @@
         <tr>
           <td class="border border-slate-300 p-2"><%= loot_item.name %></td>
           <td class="border border-slate-300 p-2"><%= loot_item.probability %></td>
-          <td class="border border-slate-300 p-2">
-            <div class="flex gap-1 items-center">
-              <%= link_to "Edit", edit_loot_table_loot_item_path(@loot_table, loot_item), class: "p-1 rounded bg-yellow-400 hover:bg-yellow-500 text-sm" %>
-              <%= button_to "Destroy", [@loot_table, loot_item], method: :delete, class: "p-1 rounded text-red-500 hover:text-red-600 text-sm font-bold", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-            </div>
-          </td>
+          <% if @show_item_actions %>
+            <td class="border border-slate-300 p-2">
+              <div class="flex gap-1 items-center">
+                <%= link_to "Edit", edit_loot_table_loot_item_path(@loot_table, loot_item), class: "p-1 rounded bg-yellow-400 hover:bg-yellow-500 text-sm" %>
+                <%= button_to "Destroy", [@loot_table, loot_item], method: :delete, class: "p-1 rounded text-red-500 hover:text-red-600 text-sm font-bold", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+              </div>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
