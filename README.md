@@ -1,24 +1,26 @@
-# README
+# RDS Calculator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Random Distribution System (RDS) Calculator, aka Loot Tables the web app.
 
-Things you may want to cover:
+Inspired by [Mike (Prof. Chuck)'s article](https://www.codeproject.com/Articles/420046/Loot-Tables-Random-Maps-and-Monsters-Part-I), this is an implementation in Ruby on Rails.
 
-* Ruby version
+## Getting started
 
-* System dependencies
+This is a standard Rails app that uses Postgres and Tailwind.
+This app expects a modern Ruby version, likely 3.2.2+, and is built on Rails 7.
 
-* Configuration
+After bundling and running `rake db:create` and `rake db:migrate`, run the app with `./bin/dev`, as this will start the app with a paired watch process to recompile Tailwind.
 
-* Database creation
+## Testing
 
-* Database initialization
+Run the tests with `rake test`.
 
-* How to run the test suite
+## Deployment
 
-* Services (job queues, cache servers, search engines, etc.)
+Deployment currently is with Digital Ocean App Platform using a Docker container.
+You'll need to be logged into the team and container registry with `doctl`.
 
-* Deployment instructions
-
-* ...
+```
+docker build . -t registry.digitalocean.com/rdscalculatorregistry/app --platform=linux/amd64
+docker push registry.digitalocean.com/rdscalculatorregistry/app
+```
