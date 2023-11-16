@@ -1,15 +1,8 @@
-<div id="<%= dom_id loot_item %>">
-  <p>
-    <strong>Name:</strong>
-    <%= loot_item.name %>
-  </p>
+<div id="<%= dom_id loot_item %>" class="flex gap-4">
+  <p><%= loot_item.name %></p>
+  <p>P: <%= loot_item.probability %></p>
 
-  <p>
-    <strong>Probability:</strong>
-    <%= loot_item.probability %>
-  </p>
-
-  <%= link_to "Edit this loot item", edit_loot_table_loot_item_path(@loot_table, loot_item) %> |
-  <%= button_to "Destroy this loot item", [@loot_table, loot_item], method: :delete %>
+  <%= link_to "Edit", edit_loot_table_loot_item_path(@loot_table, loot_item) %> |
+  <%= button_to "Destroy", [@loot_table, loot_item], method: :delete %>
 
 </div>

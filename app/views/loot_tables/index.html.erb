@@ -1,14 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Loot tables</h1>
+<h2 class="text-xl">Loot Tables</h2>
 
-<div id="loot_tables">
+<%= link_to "New loot table", new_loot_table_path, class:"block my-4 p-2 bg-blue-600 text-white w-48 text-center rounded-lg" %>
+
+<div id="loot_tables" class="grid md:grid-cols-2 gap-4">
   <% @loot_tables.each do |loot_table| %>
-    <%= render loot_table %>
-    <p>
-      <%= link_to "Show this loot table", loot_table %>
-    </p>
+    <div class="p-3 rounded-lg border border-1 border-gray-300 flex flex-col shadow-md">
+      <%= link_to loot_table.title, loot_table, class: "text-xl mb-3" %>
+
+      <%= render loot_table %>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New loot table", new_loot_table_path %>

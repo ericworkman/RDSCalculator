@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RdsCalculator</title>
+    <title>RDS Calculator</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <main class="container mx-auto font-light font-sans p-4">
+      <div class="mb-4">
+        <h1 class="text-2xl"><%= link_to "RDS Calculator", root_path() %></h1>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>

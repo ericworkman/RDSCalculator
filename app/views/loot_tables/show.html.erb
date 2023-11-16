@@ -1,17 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
+<h3 class="text-xl"><%= @loot_table.title %></h3>
+
+<div class="flex gap-3 mb-4 items-center">
+  <%= link_to "Edit", edit_loot_table_path(@loot_table), class: "p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-sm" %>
+  <%= button_to "Destroy", @loot_table, method: :delete, class: "p-2 rounded text-red-500 hover:text-red-600 text-sm font-bold", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+  <%= link_to "Back", loot_tables_path, class: "text-sm" %>
+</div>
+
 <%= render @loot_table %>
 
-<div>
-  <%= link_to "Edit this loot table", edit_loot_table_path(@loot_table) %> |
-  <%= link_to "Add Loot Item", new_loot_table_loot_item_path(@loot_table) %> |
-  <%= link_to "Back to loot tables", loot_tables_path %> |
+<div class="flex gap-4 mt-1">
+  <%= link_to "Add Loot Item", new_loot_table_loot_item_path(@loot_table), class: "p-2 rounded bg-indigo-300 hover:bg-indigo-400 text-sm" %>
+</div>
 
-  <%= form_with(url: loot_table_roll_path(@loot_table), id: dom_id(@loot_table, "roll"), local: false) do |form| %>
-    <button class="" type="submit" aria-label="Roll">
-      Roll
-    </button>
+<div class="mt-5 flex flex-col">
+  <%= form_with(url: loot_table_roll_path(@loot_table), local: false) do |form| %>
+    <%= form.submit "Roll", data: { turbo_submits_with: "Rolling..." }, class: "cursor-pointer p-2 rounded bg-indigo-500 hover:bg-indigo-600 text-sm text-white"%>
   <% end %>
 
-  <%= button_to "Destroy this loot table", @loot_table, method: :delete %>
+  <div class="h-16 mt-1">
+    <div id="<%= dom_id(@loot_table, 'roll') %>" ></div>
+  </div>
 </div>

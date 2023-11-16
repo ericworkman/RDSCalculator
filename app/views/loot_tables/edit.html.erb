@@ -1,10 +1,7 @@
-<h1>Editing loot table</h1>
+<h2 class="text-xl">Editing loot table</h2>
 
 <%= render "form", loot_table: @loot_table %>
 
-<br>
-
-<div>
-  <%= link_to "Show this loot table", @loot_table %> |
-  <%= link_to "Back to loot tables", loot_tables_path %>
+<div class="flex flex-col">
+  <%= link_to "Cancel", @loot_table %>
 </div>

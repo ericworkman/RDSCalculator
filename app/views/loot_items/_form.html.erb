@@ -1,7 +1,7 @@
-<%= form_with(model: [@loot_table, loot_item], local: true) do |form| %>
+<%= form_with(model: [@loot_table, loot_item], local: true, class: "my-4 flex flex-col gap-4") do |form| %>
   <% if loot_item.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(loot_item.errors.count, "error") %> prohibited this loot_item from being saved:</h2>
+      <h2><%= pluralize(loot_item.errors.count, "error") %></h2>
 
       <ul>
         <% loot_item.errors.each do |error| %>
@@ -18,10 +18,11 @@
 
   <div>
     <%= form.label :probability, style: "display: block" %>
-    <%= form.number_field :probability %>
+    <%= form.number_field :probability, min: 0 %>
   </div>
   
-  <div>
-    <%= form.submit %>
+  <div class="flex items-center gap-5">
+    <%= form.submit class: "p-2 bg-teal-300 hover:bg-teal-400 cursor-pointer rounded" %>
+    <%= link_to "Cancel", loot_table_path(@loot_table) %>
   </div>
 <% end %>
