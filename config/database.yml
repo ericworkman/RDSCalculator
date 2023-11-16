@@ -93,3 +93,4 @@ test:
 production:
   <<: *default
   database: rds_calculator_production
+  sslmode: 'require'
