@@ -27,8 +27,8 @@ docker push registry.digitalocean.com/rdscalculatorregistry/app
 
 ## Todo
 
-1. Support loot item unique, always flags
-1. Support adding count to roll table or roll to get multiple items
+1. ~~Support loot item unique, always flags~~
+1. ~~Support adding count to roll table or roll to get multiple items~~
 1. Support embedded loot tables
 1. Support min and max on loot items, so that a value can be rolled (eg, specify 5000 to 6000 gold can roll 5400 gold)
 1. Setup database defaults for loot items and tables
