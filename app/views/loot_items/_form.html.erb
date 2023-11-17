@@ -30,6 +30,11 @@
     <%= form.label :unique, style: "display: block" %>
     <%= form.check_box :unique %>
   </div>
+
+  <div>
+    <%= form.label :inner_table, style: "display: block" %>
+    <%= form.select :inner_table_id, @tables.collect{|t| [t.title, t.id]}, :include_blank => true %>
+  </div>
   
   <div class="flex items-center gap-5">
     <%= form.submit class: "p-2 bg-teal-300 hover:bg-teal-400 cursor-pointer rounded" %>

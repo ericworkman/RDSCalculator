@@ -33,7 +33,15 @@ class LootTableTest < ActiveSupport::TestCase
     item1 = LootItem.create(name: "Item 1", probability: 1, loot_table_id: table.id)
     item2 = LootItem.create(name: "Item 2", probability: 1000, loot_table_id: table.id, unique: true)
     300.times do
-      refute table.roll().collect{:id} == [item2.id, item2.id]
+      refute table.roll().collect(&:id) == [item2.id, item2.id]
     end
+  end
+
+  test "rolls on child tables of loot items" do
+    parent = LootTable.create(title: "Parent Table", count: 1)
+    child = LootTable.create(title: "Child Table", count: 1)
+    item1 = LootItem.create(name: "Parent Item 1", probability: 1, loot_table_id: parent.id, inner_table_id: child.id)
+    item2 = LootItem.create(name: "Child Item 1", probability: 1, loot_table_id: child.id)
+    assert parent.roll().collect(&:id) == [item2.id]
   end
 end

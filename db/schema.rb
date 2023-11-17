@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_17_035749) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_17_200121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_035749) do
     t.datetime "updated_at", null: false
     t.boolean "always"
     t.boolean "unique"
+    t.integer "inner_table_id"
     t.index ["loot_table_id"], name: "index_loot_items_on_loot_table_id"
   end
 
@@ -33,4 +34,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_035749) do
   end
 
   add_foreign_key "loot_items", "loot_tables"
+  add_foreign_key "loot_items", "loot_tables", column: "inner_table_id"
 end

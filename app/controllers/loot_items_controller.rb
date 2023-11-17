@@ -14,10 +14,12 @@ class LootItemsController < ApplicationController
   # GET /loot_items/new
   def new
     @loot_item = @loot_table.loot_items.build
+    @tables = LootTable.all
   end
 
   # GET /loot_items/1/edit
   def edit
+    @tables = LootTable.all
   end
 
   # POST /loot_items or /loot_items.json
@@ -66,7 +68,7 @@ class LootItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loot_item_params
-      params.require(:loot_item).permit(:name, :probability, :loot_table_id, :always, :unique)
+      params.require(:loot_item).permit(:name, :probability, :loot_table_id, :always, :unique, :inner_table_id)
     end
 
     def get_loot_table

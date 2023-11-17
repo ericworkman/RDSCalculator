@@ -24,6 +24,8 @@ class LootTable < ApplicationRecord
           # if the item is unique and found again, oh well
           if item.unique
             found << item unless found.include?(item)
+          elsif item.inner_table
+            found.push(*item.inner_table.roll())
           else
             found << item
           end
