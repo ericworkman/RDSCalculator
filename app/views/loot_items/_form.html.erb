@@ -20,6 +20,16 @@
     <%= form.label :probability, style: "display: block" %>
     <%= form.number_field :probability, min: 0 %>
   </div>
+
+  <div>
+    <%= form.label :always, style: "display: block" %>
+    <%= form.check_box :always %>
+  </div>
+
+  <div>
+    <%= form.label :unique, style: "display: block" %>
+    <%= form.check_box :unique %>
+  </div>
   
   <div class="flex items-center gap-5">
     <%= form.submit class: "p-2 bg-teal-300 hover:bg-teal-400 cursor-pointer rounded" %>

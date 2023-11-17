@@ -5,6 +5,8 @@
       <tr>
         <th class="border border-slate-300 p-2 bg-slate-100">Name</th>
         <th class="border border-slate-300 p-2 bg-slate-100">Probability</th>
+        <th class="border border-slate-300 p-2 bg-slate-100">Always</th>
+        <th class="border border-slate-300 p-2 bg-slate-100">Unique</th>
         <% if @show_item_actions %>
           <th class="border border-slate-300 p-2 bg-slate-100"></th>
         <% end %>
@@ -16,6 +18,8 @@
         <tr>
           <td class="border border-slate-300 p-2"><%= loot_item.name %></td>
           <td class="border border-slate-300 p-2"><%= loot_item.probability %></td>
+          <td class="border border-slate-300 p-2"><%= loot_item.always ? "✔" : "" %></td>
+          <td class="border border-slate-300 p-2"><%= loot_item.unique ? "✔" : "" %></td>
           <% if @show_item_actions %>
             <td class="border border-slate-300 p-2">
               <div class="flex gap-1 items-center">

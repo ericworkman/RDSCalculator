@@ -1,10 +1,11 @@
   <%= turbo_stream.replace dom_id(@loot_table, "roll") do %>
     <div id="<%= dom_id(@loot_table, 'roll') %>">
-      <p>You rolled</p>
-        <% if @roll %>
-          <p><%= @roll.name %><p>
-        <% else %>
+      <p class="text-xl">You rolled</p>
+        <% if @rolled_items.length < 1 %>
           <p>None</p>
+        <% end %>
+        <% for item in @rolled_items %>
+          <p><%= item.name %><p>
         <% end %>
     </div>
   <% end %>

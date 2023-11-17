@@ -13,7 +13,7 @@ class LootItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create loot_item" do
     assert_difference("LootItem.count") do
-      post loot_table_loot_items_url(@loot_table), params: { loot_item: { name: "New Loot Item", probability: 1 } }
+      post loot_table_loot_items_url(@loot_table), params: { loot_item: { name: "New Loot Item", probability: 1, always: true, unique: true } }
     end
 
     assert_redirected_to loot_table_url(@loot_table)

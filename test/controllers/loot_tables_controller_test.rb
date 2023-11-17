@@ -17,7 +17,7 @@ class LootTablesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create loot_table" do
     assert_difference("LootTable.count") do
-      post loot_tables_url, params: { loot_table: { title: "New Title" } }
+      post loot_tables_url, params: { loot_table: { title: "New Title", count: 10 } }
     end
 
     assert_redirected_to loot_table_url(LootTable.last)

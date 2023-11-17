@@ -16,7 +16,7 @@
 
 <div class="mt-5 flex flex-col">
   <%= form_with(url: loot_table_roll_path(@loot_table), local: false) do |form| %>
-    <%= form.submit "Roll", data: { turbo_submits_with: "Rolling..." }, class: "cursor-pointer p-2 rounded bg-indigo-500 hover:bg-indigo-600 text-sm text-white"%>
+    <%= form.submit "Roll for #{pluralize(@loot_table.count, "item")}", data: { turbo_submits_with: "Rolling..." }, class: "cursor-pointer p-2 rounded bg-indigo-500 hover:bg-indigo-600 text-sm text-white"%>
   <% end %>
 
   <div class="h-16 mt-1">

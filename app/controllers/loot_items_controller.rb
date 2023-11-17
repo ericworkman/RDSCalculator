@@ -66,7 +66,7 @@ class LootItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loot_item_params
-      params.require(:loot_item).permit(:name, :probability, :loot_table_id)
+      params.require(:loot_item).permit(:name, :probability, :loot_table_id, :always, :unique)
     end
 
     def get_loot_table

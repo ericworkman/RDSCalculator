@@ -61,7 +61,7 @@ class LootTablesController < ApplicationController
 
   # POST /loot_tables/1/roll
   def roll
-    @roll = @loot_table.roll()
+    @rolled_items = @loot_table.roll()
     respond_to do |format|
       format.turbo_stream
     end
@@ -75,6 +75,6 @@ class LootTablesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loot_table_params
-      params.require(:loot_table).permit(:title)
+      params.require(:loot_table).permit(:title, :count)
     end
 end
