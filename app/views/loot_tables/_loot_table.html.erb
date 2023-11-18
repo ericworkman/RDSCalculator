@@ -5,9 +5,11 @@
       <tr>
         <th class="border border-slate-300 p-2 bg-slate-100">Name</th>
         <th class="border border-slate-300 p-2 bg-slate-100">Probability</th>
-        <th class="border border-slate-300 p-2 bg-slate-100">Inner Table</th>
+        <th class="border border-slate-300 p-2 bg-slate-100">Min</th>
+        <th class="border border-slate-300 p-2 bg-slate-100">Max</th>
         <th class="border border-slate-300 p-2 bg-slate-100">Always</th>
         <th class="border border-slate-300 p-2 bg-slate-100">Unique</th>
+        <th class="border border-slate-300 p-2 bg-slate-100">Inner Table</th>
         <% if @show_item_actions %>
           <th class="border border-slate-300 p-2 bg-slate-100"></th>
         <% end %>
@@ -19,13 +21,15 @@
         <tr>
           <td class="border border-slate-300 p-2"><%= loot_item.name %></td>
           <td class="border border-slate-300 p-2"><%= loot_item.probability %></td>
+          <td class="border border-slate-300 p-2"><%= loot_item.min %></td>
+          <td class="border border-slate-300 p-2"><%= loot_item.max %></td>
+          <td class="border border-slate-300 p-2"><%= loot_item.always ? "✔" : "" %></td>
+          <td class="border border-slate-300 p-2"><%= loot_item.unique ? "✔" : "" %></td>
           <td class="border border-slate-300 p-2">
               <% if loot_item.inner_table_id %>
                 <%= link_to loot_item.inner_table.title, loot_table_path(loot_item.inner_table), class: "underline" %>
               <% end %>
           </td>
-          <td class="border border-slate-300 p-2"><%= loot_item.always ? "✔" : "" %></td>
-          <td class="border border-slate-300 p-2"><%= loot_item.unique ? "✔" : "" %></td>
           <% if @show_item_actions %>
             <td class="border border-slate-300 p-2">
               <div class="flex gap-1 items-center">

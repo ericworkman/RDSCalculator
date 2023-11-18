@@ -21,14 +21,22 @@
     <%= form.number_field :probability, min: 0 %>
   </div>
 
-  <div>
-    <%= form.label :always, style: "display: block" %>
-    <%= form.check_box :always %>
+  <div class="flex items-center gap-1">
+    <%= form.label :min, style: "display: block" %>
+    <%= form.number_field :min, min: 1 %>
+    -
+    <%= form.label :max, style: "display: block" %>
+    <%= form.number_field :max, min: 1 %>
   </div>
 
-  <div>
-    <%= form.label :unique, style: "display: block" %>
+  <div class="flex items-center gap-1">
+    <%= form.check_box :always %>
+    <%= form.label :always, style: "display: block" %>
+  </div>
+
+  <div class="flex items-center gap-1">
     <%= form.check_box :unique %>
+    <%= form.label :unique, style: "display: block" %>
   </div>
 
   <div>

@@ -1,5 +1,6 @@
 class LootItemsController < ApplicationController
   before_action :get_loot_table
+  before_action :get_tables, only: %i[ new edit update create ]
   before_action :set_loot_item, only: %i[ show edit update destroy ]
 
   # GET /loot_items or /loot_items.json
@@ -14,12 +15,10 @@ class LootItemsController < ApplicationController
   # GET /loot_items/new
   def new
     @loot_item = @loot_table.loot_items.build
-    @tables = LootTable.all
   end
 
   # GET /loot_items/1/edit
   def edit
-    @tables = LootTable.all
   end
 
   # POST /loot_items or /loot_items.json
@@ -68,10 +67,18 @@ class LootItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loot_item_params
-      params.require(:loot_item).permit(:name, :probability, :loot_table_id, :always, :unique, :inner_table_id)
+      params.require(:loot_item).permit(:name, :probability, :loot_table_id, :always, :unique, :inner_table_id, :min, :max)
     end
 
     def get_loot_table
       @loot_table = LootTable.find(params[:loot_table_id])
+    end
+
+    def get_tables
+      if @loot_table
+        @tables = LootTable.where.not(id: @loot_table.id)
+      else
+        @tables = LootTable.all
+      end
     end
 end

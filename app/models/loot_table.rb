@@ -4,7 +4,7 @@ class LootTable < ApplicationRecord
   validates :title, presence: true, uniqueness: true
   validates :count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 100 }
 
-  # Based very loosely on
+  # Based loosely on
   # https://www.codeproject.com/Articles/420046/Loot-Tables-Random-Maps-and-Monsters-Part-I
   def roll
     # This is a short cut compared to the source.
@@ -36,7 +36,16 @@ class LootTable < ApplicationRecord
         end
       end
     end
-    found
+    # Compact the list by name to consolidate items
+    consolidated = Hash.new
+    found.each do |item|
+      if consolidated.include? item.name
+        consolidated[item.name].count += item.count
+      else
+        consolidated[item.name] = LootResult.new(item.name, item.count)
+      end
+    end
+    consolidated.values
   end
 
   def possible_probabilities

@@ -1,10 +1,34 @@
 <p style="color: green"><%= notice %></p>
 
+<div class="rounded-xl p-4 bg-gray-100 my-5">
+  <p>
+    This is a project inspired by <a class="underline" href="https://www.codeproject.com/Articles/420046/Loot-Tables-Random-Maps-and-Monsters-Part-I">Loot-Tables, Random Maps and Monsters - Part I</a>
+    by Mike (Prof. Chuck). Here you'll find a Random Distribution System (RDS) that implements most of the features of the article.
+  </p>
+
+  <p class="mt-4">
+    Create a loot table that represents all the possible loot from an encounter. Each loot item in the table has a chance to drop relative to all the other items in the table. Roll on the table to generate a set of items. Items can be other tables, unique across the whole result, randomly distribute the amount (for gold or similar), or always be part of the result.
+  </p>
+
+  <p class="mt-4">
+    There is currently no way to hook into the tables and items to change them on the fly.
+  </p>
+
+  <p class="mt-4 flex gap-1">
+    Check out the project on
+    <a class="flex gap-1" href="https://github.com/ericworkman/RDSCalculator">
+      GitHub
+      <svg class="h-5 w-5" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>.
+  </p>
+  
+</div>
+
 <h2 class="text-xl">Loot Tables</h2>
 
 <%= link_to "New loot table", new_loot_table_path, class:"block my-4 p-2 bg-blue-600 text-white w-48 text-center rounded-lg" %>
 
-<div id="loot_tables" class="grid md:grid-cols-2 gap-4">
+<div id="loot_tables" class="grid lg:grid-cols-2 gap-4">
   <% @loot_tables.each do |loot_table| %>
     <div class="p-3 rounded-lg border border-1 border-gray-300 flex flex-col shadow-md">
       <%= link_to loot_table.title, loot_table, class: "text-xl mb-3" %>
