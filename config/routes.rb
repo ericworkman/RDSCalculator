@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :loot_tables do
     resources :loot_items
+    member do
+      post "/roll", to: 'loot_tables#roll'
+    end
   end
-  post "/loot_tables/:id/roll", to: 'loot_tables#roll', as: "loot_table_roll"
 end
