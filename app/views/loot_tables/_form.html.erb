@@ -16,11 +16,6 @@
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label "Roll Count", style: "display: block" %>
-    <%= form.number_field :count, min: 1, max: 100 %>
-  </div>
-
   <div class="flex items-center gap-5">
     <%= form.submit class: "p-2 bg-teal-300 hover:bg-teal-400 cursor-pointer rounded" %>
     <%= link_to "Cancel", loot_tables_path %>

@@ -68,6 +68,6 @@ class LootTablesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loot_table_params
-      params.require(:loot_table).permit(:title, :count)
+      params.require(:loot_table).permit(:title)
     end
 end
