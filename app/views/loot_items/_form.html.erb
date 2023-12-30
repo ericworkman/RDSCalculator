@@ -19,29 +19,47 @@
   <div>
     <%= form.label :probability, style: "display: block" %>
     <%= form.number_field :probability, min: 0 %>
+    <p class="text-sm p-2">
+      This is relative probability compared to the rest of the loot items on the table.
+      A 10 here and another item with a 10 probability would give equal chance to both items.
+    </p>
   </div>
 
-  <div class="flex items-center gap-1">
-    <%= form.label :min, style: "display: block" %>
-    <%= form.number_field :min, min: 1 %>
-    -
-    <%= form.label :max, style: "display: block" %>
-    <%= form.number_field :max, min: 1 %>
+  <div>
+    <p class="text-">Quantity</p>
+    <div class="flex items-center gap-1">
+      <%= form.label :min, style: "display: block" %>
+      <%= form.number_field :min, min: 1 %>
+      to
+      <%= form.number_field :max, min: 1 %>
+      <%= form.label :max, style: "display: block" %>
+    </div>
   </div>
 
   <div class="flex items-center gap-1">
     <%= form.check_box :always %>
     <%= form.label :always, style: "display: block" %>
+    <p class="text-sm p-2">
+      Always include this item in the results, overriding the probability.
+      This will override the inner_table.
+    <p>
   </div>
 
   <div class="flex items-center gap-1">
     <%= form.check_box :unique %>
     <%= form.label :unique, style: "display: block" %>
+    <p class="text-sm p-2">
+      Only ever include one of these in the results. Ignores items from the inner table.
+    <p>
   </div>
 
   <div>
     <%= form.label :inner_table, style: "display: block" %>
     <%= form.select :inner_table_id, @tables.collect{|t| [t.title, t.id]}, :include_blank => true %>
+    <p class="text-sm p-2">
+      If this item is rolled, instead roll on the selected table.
+      This is overridden by the Always option.
+    <p>
   </div>
   
   <div class="flex items-center gap-5">
