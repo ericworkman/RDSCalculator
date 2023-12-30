@@ -1,0 +1,22 @@
+<%= form_with(model: roll, url: [@loot_table, roll], local: false, class: "flex gap-4 items-center") do |form| %>
+  <% if roll.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(roll.errors.count, "error") %> prohibited this roll from being saved:</h2>
+
+      <ul>
+        <% roll.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex items-center gap-2">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, value: 1, min: 1, max: 100, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit "Roll", data: { turbo_submits_with: "Rolling..." }, class: "cursor-pointer p-2 rounded bg-indigo-500 hover:bg-indigo-600 text-lg text-white" %>
+  </div>
+<% end %>

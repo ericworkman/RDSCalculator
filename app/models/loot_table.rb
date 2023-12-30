@@ -1,31 +1,34 @@
 class LootTable < ApplicationRecord
   has_many :loot_items, dependent: :destroy
+  has_many :rolls, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
-  validates :count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 100 }
 
   # Based loosely on
   # https://www.codeproject.com/Articles/420046/Loot-Tables-Random-Maps-and-Monsters-Part-I
-  def roll
-    # This is a short cut compared to the source.
-    # We can walk through the items, subtract the item probability from the hit count until its
-    # less than or equal to an item's probability.
-    # It is also totally possible to make an impossible-to-match table, so we'll limit the number
-    # of tries here for safety. This is probably good enough, except for higher counts and really
-    # rare items. Common sense: don't force higher counts when items are really rare.
+  # 
+  # Walk through the items, subtract the item probability from the hit count until its less than
+  # or equal to an item's probability. It is also possible to make an impossible-to-match table or
+  # to ask for many very rare items, so we'll limit the number of attempts here for safety.
+  # 
+  # @param number [Integer] the number of results to get before stopping
+  # @param attempt [Integer] the current attempt at getting results
+  # @param limit [Integer] how many times to try to get results
+  # @return [Array] of chosen loot_items
+  def roll(number: 1, attempt: 0, limit: 1000)
     found = always_items
-    attempt = 0
-    limit = 1000
-    while (count > found.length) && (attempt < limit) do
+    
+    while (number > found.length) && (attempt < limit) do
       attempt += 1
-      hit = 1 + rand(possible_probabilities)
+      hit = rand_hit()
+
       possible_items.each do |item|
         if item.probability >= hit
-          # if the item is unique and found again, oh well
           if item.unique
+            # if the item is unique and found again, oh well
             found << item unless found.include?(item)
           elsif item.inner_table
-            found.push(*item.inner_table.roll())
+            found.push(*item.inner_table.roll(number: number - found.length, attempt: attempt, limit: limit))
           else
             found << item
           end
@@ -36,21 +39,11 @@ class LootTable < ApplicationRecord
         end
       end
     end
-    # Compact the list by name to consolidate items
-    consolidated = Hash.new
-    found.each do |item|
-      if consolidated.include? item.name
-        consolidated[item.name].count += item.count
-      else
-        consolidated[item.name] = LootResult.new(item.name, item.count)
-      end
-    end
-    consolidated.values
+
+    found
   end
 
-  def possible_probabilities
-    possible_items.sum(&:probability)
-  end
+  private
 
   def possible_items
     loot_items.reject(&:always)
@@ -58,5 +51,13 @@ class LootTable < ApplicationRecord
 
   def always_items
     loot_items.filter(&:always)
+  end
+
+  def possible_probabilities
+    possible_items.sum(&:probability)
+  end
+
+  def rand_hit
+    1 + rand(possible_probabilities)
   end
 end

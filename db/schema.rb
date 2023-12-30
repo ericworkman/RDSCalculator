@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_17_223347) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_30_022054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,25 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_223347) do
     t.integer "count", default: 1
   end
 
+  create_table "loots", force: :cascade do |t|
+    t.integer "quantity"
+    t.string "name"
+    t.bigint "roll_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["roll_id"], name: "index_loots_on_roll_id"
+  end
+
+  create_table "rolls", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "loot_table_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loot_table_id"], name: "index_rolls_on_loot_table_id"
+  end
+
   add_foreign_key "loot_items", "loot_tables"
   add_foreign_key "loot_items", "loot_tables", column: "inner_table_id"
+  add_foreign_key "loots", "rolls"
+  add_foreign_key "rolls", "loot_tables"
 end

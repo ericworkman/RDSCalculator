@@ -9,8 +9,6 @@ Rails.application.routes.draw do
 
   resources :loot_tables do
     resources :loot_items
-    member do
-      post "/roll", to: 'loot_tables#roll'
-    end
+    resources :rolls, only: [:create]
   end
 end

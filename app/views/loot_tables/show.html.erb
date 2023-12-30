@@ -15,9 +15,7 @@
 </div>
 
 <div class="mt-5 flex flex-col">
-  <%= form_with(url: roll_loot_table_path(@loot_table), local: false) do |form| %>
-    <%= form.submit "Roll for #{pluralize(@loot_table.count, "item")}", data: { turbo_submits_with: "Rolling..." }, class: "cursor-pointer p-2 rounded bg-indigo-500 hover:bg-indigo-600 text-sm text-white"%>
-  <% end %>
+  <%= render "rolls/form", roll: @roll %>
 
   <div class="h-16 mt-1">
     <div id="<%= dom_id(@loot_table, 'roll') %>" ></div>

@@ -45,11 +45,4 @@ class LootTablesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to loot_tables_url
   end
-
-  test "should select the loot item on roll" do
-    expected_item = loot_items(:one)
-    post roll_loot_table_url(@loot_table), xhr: true
-    assert_response :success
-    assert_match expected_item.name, @response.body
-  end
 end

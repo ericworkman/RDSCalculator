@@ -1,5 +1,5 @@
 class LootTablesController < ApplicationController
-  before_action :set_loot_table, only: %i[ show edit update destroy roll ]
+  before_action :set_loot_table, only: %i[ show edit update destroy ]
 
   # GET /loot_tables or /loot_tables.json
   def index
@@ -10,6 +10,7 @@ class LootTablesController < ApplicationController
   # GET /loot_tables/1 or /loot_tables/1.json
   def show
     @show_item_actions = true
+    @roll = Roll.new
   end
 
   # GET /loot_tables/new
@@ -56,14 +57,6 @@ class LootTablesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to loot_tables_url, notice: "Loot table was successfully destroyed." }
       format.json { head :no_content }
-    end
-  end
-
-  # POST /loot_tables/1/roll
-  def roll
-    @rolled_items = @loot_table.roll()
-    respond_to do |format|
-      format.turbo_stream
     end
   end
 
