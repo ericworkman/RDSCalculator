@@ -27,10 +27,4 @@ Run the tests with `rake test`.
 
 ## Deployment
 
-Deployment currently is with Digital Ocean App Platform using a Docker container.
-You'll need to be logged into the team and container registry with `doctl`.
-
-```
-docker build . -t registry.digitalocean.com/rdscalculatorregistry/app --platform=linux/amd64
-docker push registry.digitalocean.com/rdscalculatorregistry/app
-```
+Deployment is automatic with Railway using a Docker container on push to the `main` branch.
